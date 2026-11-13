@@ -30,7 +30,7 @@ The table below lists each tool used in this report and its purpose.
 | Tool | Purpose |
 |---|---|
 | Kali Linux & Windows | Operating systems used for reconnaissance activities             |
-| WHOIS                | Find domain registration details (owner, dates, name servers).   |
+| whois                | Find domain registration details (owner, dates, name servers).   |
 | whatweb              | Fingerprint web technologies (server, CMS, plugins, IP).         |
 | nslookup             | Resolve the domain name to its IP address using DNS.             |
 | curl -I              | Read the HTTP response headers of the website.                   |
@@ -44,39 +44,41 @@ The table below lists each tool used in this report and its purpose.
 # 4. Activities Performed
 
 ## 4.1 Footprinting & Reconnaissance
+All these project modules was done under the given permission of "networkwalks". The other PM2,PM3,PM4 were completed to see how other tools can be used for footprinting on publicly available information.
 
-I performed reconnaissance against the `networkwalks.com` domain using six Kali Linux tools: **WHOIS, WhatWeb, Nslookup, Curl, Wafw00f and DNSRecon**. Each tool was used to collect a different type of information about the target.
+###4.1.1 PM1 (Multiple Kali Tools)
+whois - used it to identify the hosting provider of the "networkwalks.com" which is "HOSTGATOR"
+whatweb - used it to extract the software versions of the website such as WordPress 7.1.4,WordPress Download Manager 3.3.76
+nslookup - used to find the IP address of "networkwalks.com" which is 192.232.216.135
+curl -used it with -I parameter, to get only the response headers of the website without the website body
+wafw00f -  used it to check if the web application is protected by a firewall or not, "networkwalks" is secured by ModSecurity (SpiderLabs)
+dnsrecon - used to map out the DNS footprint of the email and hosting setup
 
-First, I used **WHOIS** to obtain publicly available domain registration information and identify the domain’s name servers. The results provided information about the domain registration and hosting infrastructure.
+### 4.2 PM2 (GHDB)
 
-I then used **WhatWeb** to identify technologies used by the website. The results identified **WordPress 7.0.4** and **WP Download Manager 3.3.58**, along with other information exposed by the website.
+I used GHDB to footprint explosed public links to various IoT devices, such as live cameras, public files e.g. pdf listings. In which i tested some google dorks to find those links, where i found some live cameras using HTTP protocol and unencrypted, which raised a cause for concern for the owners of those cameras who don't realize their camera feed can be viewed by anyone on the internet just by a clever search on google without even knowing or touching their system. 
 
-Using **Nslookup**, I resolved the domain name to its IP address. The provided result identified **192.232.216.135**.
+### 4.3 PM3 (Maltego)
 
-I used **Curl** with the `-I` option to inspect the HTTP response headers. This provided additional information about the web application and exposed the WordPress REST API endpoint `/wp-json/`.
+I setup Maltego on Windows 10 PC, ignoring their minimum requirments. Used it to find related email adresses to "networkwalks.com", which resulted to only one email address, "info@networkwalks.com", i completed this task for the sake of exposure to see how other OSINT tools function
 
-Next, I used **Wafw00f** to determine whether a Web Application Firewall was protecting the website. The result identified **ModSecurity (SpiderLabs)**.
+### 4.4 PM4 (theHarvester)
 
-Finally, I used **DNSRecon** to enumerate DNS records. The results provided information relating to name servers, mail servers, SPF/TXT records, service records and DNS software information.
+This one was ommitted in the documentation as the target website was not "networkwalks.com" and there was no clear permission for that website, but i completed its task to see how theHarvester commands works using the publicly available information from many search engines such as yahoo,baidu, on general public secure domains which has email hosting services. 
 
-## 4.2 Network Scanning with Zenmap
+## 4.2 Network Scanning with Zenmap (PM5)
 
-For the second activity, I used **Zenmap** to perform network discovery on my local network. The practical required me to identify my local IP address and subnet, discover live hosts, identify their IP and MAC addresses, and generate a network topology.
+For this required tasks, i setup un Zenmap on windows. I then used ipconfig to check my local ip address and subnet of the network im connected to, in which case was the private wifi hotspot network, and my DHCP assigned IP address was  10.244.8.48 and the subnet 255.255.255.0
+On the target section in zenmap, used 10.244.8.0/24, and used the ping scan option, which discovered up to 4 host devices on the network, with the following IP Addresses:
 
-I first used the Windows `ipconfig` command to identify my local IP address and LAN subnet. I then entered the subnet into Zenmap and selected **Ping Scan** to identify active hosts.
+10.244.8.214
+10.244.8.24
+10.244.8.150
+10.244.8.48 (host.docker.internal)->my pc
 
-The example results provided in the practical identified four live hosts:
+Which mapped the actual devices that are connected to that wifi hotspot, 4 real devices in total, the screenshot of the output results of zenmap, was not captured as it contained the physical MAC addresses of the real devices, not the Virtual Machines.
+I exported the topology of the network of these devices, using the tology export, taking note of the legend to recognize what each symbol means.
 
-- `10.0.0.1`
-- `10.0.0.4`
-- `10.0.0.19`
-- `10.0.0.5`
-
-The example results also included four MAC addresses.
-
-After completing the scan, I opened the **Topology** section in Zenmap, enabled the legend and saved the network topology in PDF format as required by the practical task.
-
-**Note:** The actual subnet, number of hosts and addresses should be replaced with the results from my own network when submitting the report.
 
 # 5. Risk Analysis / Impact
 
@@ -95,7 +97,7 @@ Based on the information collected during the footprinting and network scanning 
 
 The risks above are observations from the footprinting and scanning exercises, not confirmed vulnerabilities.
 
-The practical exercises primarily involved information gathering and host discovery. No exploitation or vulnerability validation was performed as part of these two modules.
+The practical exercises primarily involved information gathering and host discovery. No exploitation or vulnerability validation was performed as part of these modules.
 
 Therefore, the presence of information such as a software version, IP address or DNS record does not by itself mean that the system is vulnerable. Further authorized security testing would be required to confirm any actual vulnerability.
 
@@ -132,34 +134,34 @@ Based on the observations from these activities, I recommend the following secur
 
 # 7. Conclusion
 
-During Week 2 of my Cybersecurity & Ethical Hacking internship, I completed practical activities covering footprinting, reconnaissance and network scanning.
+During Week 2 of my Cybersecurity internship, I completed practical activities covering footprinting, reconnaissance and network scanning.
 
-In the footprinting activity, I used six Kali Linux tools to collect information about the target domain. I learned how WHOIS can provide domain information, WhatWeb can identify web technologies, Nslookup can resolve domain names, Curl can inspect HTTP headers, Wafw00f can identify a WAF, and DNSRecon can provide additional DNS information.
+I used various tools for passive reconnaissance to inspect the information that is publicly available on given domain, No actual direct attack to that domain was done, except the network scanning of my local area network, which helps to identify unauthorised devices on the network. 
 
-In the network scanning activity, I used Zenmap to identify my local network configuration and discover active hosts. I also collected IP and MAC address information and created a network topology.
-
-The exercises showed me that information gathering is an important part of cybersecurity. Even before attempting to exploit a system, a security professional can learn a significant amount about an environment by carefully analyzing publicly available information and network responses.
-
-I also learned that technical findings should be documented clearly. A good cybersecurity report should explain what was performed, what was discovered, what the observation means, what risk it may create, and what can be done to reduce that risk.
+Each project module tools had its own strengths and weaknesses, choosing the right tools can be crucial in being up to date with the security of  a domain, and knowing what your website exposes publicly can help take measures to defend against attacks. I also learned that all findings should be clearly documented so they can be cross referenced and used for further analysis, if the owner of a website uses that report to fix the vulnerabilities of their system, they can rerun those tests to see if the risk to their system is minimised.
 
 Finally, I learned that reconnaissance and scanning must always be performed within an authorized scope. These activities were completed as part of the assigned educational cybersecurity lab.
 
 # 8. Evidences Collected
 
-*Screenshots collected as evidence during the activities (stored in the `screenshots/` folder):*
+*Screenshots and output collected as evidence during the activities (stored in the each `PM{number}/` folder):*
 
-![whois output](screenshots/1_whois.png)
+## PM1 (Multiple Kali Tools)
 
-![whatweb output](screenshots/2_whatweb.png)
+![whois output](PM1/1.whois.png)
 
-![nslookup output](screenshots/3_nslookup.png)
+![whatweb output](PM1/2.whatweb.png)
 
-![curl output](screenshots/4_curl.png)
+![nslookup output](PM1/3.nslookup.png)
 
-![wafw00f output](screenshots/5_wafw00f.png)
+![curl output](PM1/4.curl.png)
 
-![dnsrecon output](screenshots/7_zenmap.png)
+![wafw00f output](PM1/5.wafw00f.png)
 
-![Zenmap scan and topology](screenshots/8_zenmap2.png)
+![dnsrecon output](PM1/6.dnsrecon.png)
+
+### 4.3 PM3 (Maltego)
+
+![Maltego output](PM3/maltego_screenshot.png)
 
 -End-
