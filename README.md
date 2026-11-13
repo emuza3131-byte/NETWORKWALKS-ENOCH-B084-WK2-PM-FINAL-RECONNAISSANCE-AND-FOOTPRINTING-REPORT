@@ -48,11 +48,11 @@ All these project modules was done under the given permission of "networkwalks".
 
 ### 4.1.1 PM1 (Multiple Kali Tools)
 whois - used it to identify the hosting provider of the "networkwalks.com" which is "HOSTGATOR"
-whatweb - used it to extract the software versions of the website such as WordPress 7.1.4,WordPress Download Manager 3.3.76
-nslookup - used to find the IP address of "networkwalks.com" which is 192.232.216.135
-curl -used it with -I parameter, to get only the response headers of the website without the website body
-wafw00f -  used it to check if the web application is protected by a firewall or not, "networkwalks" is secured by ModSecurity (SpiderLabs)
-dnsrecon - used to map out the DNS footprint of the email and hosting setup
+<br/>whatweb - used it to extract the software versions of the website such as WordPress 7.1.4,WordPress Download Manager 3.3.76
+<br/>nslookup - used to find the IP address of "networkwalks.com" which is 192.232.216.135
+<br/>curl -used it with -I parameter, to get only the response headers of the website without the website body
+<br/>wafw00f -  used it to check if the web application is protected by a firewall or not, "networkwalks" is secured by ModSecurity (SpiderLabs)
+<br/>dnsrecon - used to map out the DNS footprint of the email and hosting setup
 
 ### 4.2 PM2 (GHDB)
 
@@ -71,11 +71,11 @@ This one was ommitted in the documentation as the target website was not "networ
 For this required tasks, i setup un Zenmap on windows. I then used ipconfig to check my local ip address and subnet of the network im connected to, in which case was the private wifi hotspot network, and my DHCP assigned IP address was  10.244.8.48 and the subnet 255.255.255.0
 On the target section in zenmap, used 10.244.8.0/24, and used the ping scan option, which discovered up to 4 host devices on the network, with the following IP Addresses:
 
-10.244.8.214
-10.244.8.24
-10.244.8.150
-10.244.8.48 (host.docker.internal)->my pc
-
+<br/>10.244.8.214
+<br/>10.244.8.24
+<br/>10.244.8.150
+<br/>10.244.8.48 (host.docker.internal)->my pc
+<br/><br/>
 Which mapped the actual devices that are connected to that wifi hotspot, 4 real devices in total, the screenshot of the output results of zenmap, was not captured as it contained the physical MAC addresses of the real devices, not the Virtual Machines.
 I exported the topology of the network of these devices, using the tology export, taking note of the legend to recognize what each symbol means.
 
