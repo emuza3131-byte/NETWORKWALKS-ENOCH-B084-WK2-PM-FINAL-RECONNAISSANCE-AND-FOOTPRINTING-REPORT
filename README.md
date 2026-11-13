@@ -164,4 +164,7 @@ Finally, I learned that reconnaissance and scanning must always be performed wit
 
 ![Maltego output](PM3/maltego_screenshot.png)
 
+## PM5 (Zenmap)
+![Zenmap input](PM5/zenmap_input.png)
+
 -End-
