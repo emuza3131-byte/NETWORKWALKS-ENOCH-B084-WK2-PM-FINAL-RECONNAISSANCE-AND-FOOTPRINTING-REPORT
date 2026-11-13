@@ -160,7 +160,7 @@ Finally, I learned that reconnaissance and scanning must always be performed wit
 
 ![dnsrecon output](PM1/6.dnsrecon.png)
 
-### 4.3 PM3 (Maltego)
+### PM3 (Maltego)
 
 ![Maltego output](PM3/maltego_screenshot.png)
 
