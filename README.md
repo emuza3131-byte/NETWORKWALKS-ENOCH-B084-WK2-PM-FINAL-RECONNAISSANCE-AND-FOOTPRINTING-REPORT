@@ -46,7 +46,7 @@ The table below lists each tool used in this report and its purpose.
 ## 4.1 Footprinting & Reconnaissance
 All these project modules was done under the given permission of "networkwalks". The other PM2,PM3,PM4 were completed to see how other tools can be used for footprinting on publicly available information.
 
-###4.1.1 PM1 (Multiple Kali Tools)
+### 4.1.1 PM1 (Multiple Kali Tools)
 whois - used it to identify the hosting provider of the "networkwalks.com" which is "HOSTGATOR"
 whatweb - used it to extract the software versions of the website such as WordPress 7.1.4,WordPress Download Manager 3.3.76
 nslookup - used to find the IP address of "networkwalks.com" which is 192.232.216.135
