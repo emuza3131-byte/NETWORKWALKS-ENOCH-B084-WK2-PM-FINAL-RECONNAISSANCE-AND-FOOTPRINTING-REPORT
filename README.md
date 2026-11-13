@@ -54,15 +54,15 @@ whois - used it to identify the hosting provider of the "networkwalks.com" which
 <br/>wafw00f -  used it to check if the web application is protected by a firewall or not, "networkwalks" is secured by ModSecurity (SpiderLabs)
 <br/>dnsrecon - used to map out the DNS footprint of the email and hosting setup
 
-### 4.2 PM2 (GHDB)
+### 4.1.2 PM2 (GHDB)
 
 I used GHDB to footprint explosed public links to various IoT devices, such as live cameras, public files e.g. pdf listings. In which i tested some google dorks to find those links, where i found some live cameras using HTTP protocol and unencrypted, which raised a cause for concern for the owners of those cameras who don't realize their camera feed can be viewed by anyone on the internet just by a clever search on google without even knowing or touching their system. 
 
-### 4.3 PM3 (Maltego)
+### 4.1.3 PM3 (Maltego)
 
 I setup Maltego on Windows 10 PC, ignoring their minimum requirments. Used it to find related email adresses to "networkwalks.com", which resulted to only one email address, "info@networkwalks.com", i completed this task for the sake of exposure to see how other OSINT tools function
 
-### 4.4 PM4 (theHarvester)
+### 4.1.4 PM4 (theHarvester)
 
 This one was ommitted in the documentation as the target website was not "networkwalks.com" and there was no clear permission for that website, but i completed its task to see how theHarvester commands works using the publicly available information from many search engines such as yahoo,baidu, on general public secure domains which has email hosting services. 
 
